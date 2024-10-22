@@ -1,0 +1,32 @@
+defaults :
+  - modulus_default
+  - arch:
+      - fully_connected
+  - scheduler: tf_exponential_lr
+  - optimizer: adam
+  - loss: sum
+  - batch_size: 1xp
+  - _self_
+
+custom:
+  parameterized: False
+  num_threads: 4
+
+cuda_graphs: False
+
+arch:
+    fully_connected:
+        layer_size: 256
+
+save_filetypes : "vtk,npz"
+
+scheduler:
+  decay_rate: 0.95
+  decay_steps: 200
+
+optimizer: 
+  lr : 1e-4
+
+training:
+  rec_results_freq: 100
+  max_steps : 20000

@@ -1,0 +1,44 @@
+defaults :
+  - modulus_default
+  - arch:
+      - fully_connected
+  - scheduler: tf_exponential_lr
+  - optimizer: adam
+  - loss: sum
+  - _self_
+
+cuda_graphs: false
+
+training:
+  max_steps: 1000
+  rec_results_freq: 100
+  rec_validation_freq: ${training.rec_results_freq}
+  rec_inference_freq: ${training.rec_results_freq}
+  rec_monitor_freq: ${training.rec_results_freq}
+  rec_constraint_freq: ${training.rec_results_freq}
+  save_network_freq: 100
+  print_stats_freq: 100
+
+arch:
+    fully_connected:
+        layer_size: 256
+
+save_filetypes : "vtk,npz"
+
+scheduler:
+  decay_rate: 0.95
+  decay_steps: 100
+
+optimizer: 
+  lr : 1e-4
+
+training:
+  rec_results_freq: 1000
+  max_steps : 5000
+
+batch_size:
+  rhs: 2
+  lhs: 2
+  interface: 2
+  interior_u1: 200
+  interior_u2: 200
